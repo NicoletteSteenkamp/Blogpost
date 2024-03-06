@@ -1,13 +1,78 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5%;
+  font-size: 24px;
+  background-color: #fff;
+
+  
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  
+}
+
+ul > li {
+  padding: 8px 4px;
+}
+
+ul > li a {
+  text-decoration: none;
+  color:#000;
+  transition: 5ms;
+}
+
+ul > li a:hover{
+  color:#909090;
+}
+
+nav h3 {
+  border: #000 solid 3px;
+  padding:3px;
+}
+
+.container {
+  color:black;
+  height:100vh;
+}
+
+
+.headline-text {
+  background-image: url("https://img.freepik.com/free-vector/white-elegant-texture-background-style_23-2148432200.jpg?w=826&t=st=1709738823~exp=1709739423~hmac=eca11736de9fcd301c25d89a4b309c15e9bd8a3d88ad6c52b93db9c1b64c8ae9");
+  background-repeat: no-repeat;
+  /* background-position: 50%; */
+  background-size: cover;
+  text-align:center;
+  position: absolute;
+  top:20%;
+  width: 100%;
+  height:40vh;
+}
+
+.headline-text > button {
+background:none;
+border: none;
+color:#909090;
+}
+
+.headline-text > button:hover {
+  color:#000;
+} 
