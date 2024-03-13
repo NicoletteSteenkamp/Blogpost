@@ -1,4 +1,4 @@
-$lightGreen: #b9e7e7;
+$lightGreen: #cf7794;
 
 .app {
   display: flex;
@@ -22,7 +22,7 @@ $lightGreen: #b9e7e7;
 
       h1 {
         font-size: 20px;
-        color: teal;
+        color: rgb(221, 13, 228);
         margin-bottom: 20px;
       }
 
@@ -43,14 +43,14 @@ $lightGreen: #b9e7e7;
         button {
           padding: 10px;
           border: none;
-          background-color: teal;
+          background-color:rgb(221, 13, 228);;
           cursor: pointer;
           color: white;
         }
 
         p {
           font-size: 12px;
-          color: red;
+          color: rgb(255, 0, 255);
           text-align: center;
         }
 
