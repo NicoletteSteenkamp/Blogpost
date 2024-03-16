@@ -33,7 +33,7 @@ const Write = () => {
           </label>
           <div className="buttons">
             <button>Save as a draft</button>
-            <button>Update</button>
+            <button>Publish</button>
           </div>
         </div>
         <div className="item">
