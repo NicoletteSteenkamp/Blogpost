@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <img src={Logo} alt="logo" />
       <span>
-        Made by <b>Koli , Nicolette & Asiphile</b>
+        Made by <b>Koli, Nicolette & Asiphile</b>
       </span>
     </footer>
   );
