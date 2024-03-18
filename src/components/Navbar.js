@@ -1,4 +1,3 @@
-// Navbar.jsx
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
@@ -17,9 +16,9 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <div className="logo">
-          <a href="/">
+          <Link to="/">
             <img src={Logo} alt="logo" />
-          </a>
+          </Link>
         </div>
         <div className="links">
           <Link className="link" to="/?cat=art">
@@ -58,3 +57,5 @@ const Navbar = () => {
     </div>
   );
 };
+
+export default Navbar;
