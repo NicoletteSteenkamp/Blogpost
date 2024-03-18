@@ -1,8 +1,7 @@
 import mysql from "mysql2";
 
-import mysql from "mysql2";
-
-export const db = mysql.createConnection({
+// Create a connection to the database
+const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "Ezekiel1!",
@@ -10,4 +9,6 @@ export const db = mysql.createConnection({
   connectionLimit: 30,
 });
 
-export const db = db.promise();
+// Promisify the connection
+export const dbPromise = db.promise();
+
