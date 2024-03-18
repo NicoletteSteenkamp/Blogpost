@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useContext } from "react";
 
 // Create a new context called AuthContext
 export const AuthContext = createContext();
@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   // Define a function called logout that makes a POST request to the /auth/logout endpoint and sets the currentUser state variable to null
-  const logout = async (inputs) => {
+  const logout = async () => {
     await axios.post("/auth/logout");
     setCurrentUser(null);
   };
@@ -28,24 +28,36 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
 
+  // Define handleSubmit function to handle the form submission when the user clicks the submit button
+  const handleSubmit = async (inputs, navigate, setError) => {
+    try {
+      // Post the user input to the "/auth/login" endpoint and navigate to the home page
+      await login(inputs); // new login function
+      navigate("/");
+    } catch (err) {
+      // If there is an error, set the error state variable to the error message
+      setError(err.response.data);
+    }
+  };
+
   // Return the AuthContext.Provider component with the currentUser, login, and logout functions as values and the children as its child components
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, handleSubmit }}>
       {children}
     </AuthContext.Provider>
   );
-}; //useContext hook to get the login function from the AuthContext.  
-const { login } = useContext(AuthContext);  
-
-// Define handleSubmit function to handle the form submission when the user clicks the submit button
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    // Post the user input to the "/auth/login" endpoint and navigate to the home page
-    await login(inputs); // new login function
-    navigate("/");
-  } catch (err) {
-    // If there is an error, set the error state variable to the error message
-    setError(err.response.data);
-  }
 };
+
+// Example usage:
+// const { login } = useContext(AuthContext);
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     // Post the user input to the "/auth/login" endpoint and navigate to the home page
+//     await login(inputs); // new login function
+//     navigate("/");
+//   } catch (err) {
+//     // If there is an error, set the error state variable to the error message
+//     setError(err.response.data);
+//   }
+// };
