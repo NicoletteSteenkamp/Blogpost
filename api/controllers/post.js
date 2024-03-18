@@ -20,8 +20,9 @@ router.delete("/:id", deletePost); // Delete a post by its ID
 router.put("/:id", updatePost); // Update a post by its ID
 
 export default router;
+
 // Retrieves posts from a database
-export const getPosts = (req, res) => {
+export const getPostsHandler = (req, res) => {
   // If the query string includes a category parameter,
   // select all posts from the given category. Otherwise,
   // select all posts.
@@ -41,7 +42,7 @@ export const getPosts = (req, res) => {
 };
 
 // Retrieves a single post from the database
-export const getPost = (req, res) => {
+export const getPostHandler = (req, res) => {
   // Select specific fields from both the users and posts table,
   // and join them based on the user ID of the post author.
   const q =
@@ -59,7 +60,7 @@ export const getPost = (req, res) => {
 };
 
 // Adds a new post to the database
-export const addPost = (req, res) => {
+export const addPostHandler = (req, res) => {
   // Check if the user is authenticated by checking for a token in the cookies
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
@@ -96,7 +97,7 @@ export const addPost = (req, res) => {
 };
 
 // Deletes a post from the database
-export const deletePost = (req, res) => {
+export const deletePostHandler = (req, res) => {
   // Check if the user is authenticated by checking for a token in the cookies
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
@@ -125,7 +126,7 @@ export const deletePost = (req, res) => {
 };
 
 // Update a post
-export const updatePost = (req, res) => {
+export const updatePostHandler = (req, res) => {
   // Get the access token from the request cookies.
   const token = req.cookies.access_token;
 
