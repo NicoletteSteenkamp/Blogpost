@@ -5,17 +5,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MySQL Connection Configuration
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'your_mysql_username',
-  password: 'Ezekiel1!',
-  database: 'blogpost'
-});
+// Create a connection to the database
+const connection = mysql.createConnection({
+    host: 'localhost', 
+    port: 3306,
+    user: 'root', 
+    password: 'Ezekiel1!',
+    database: 'blogpost'
+  });
+  
 
-// Connect to MySQL
-db.connect((err) => {
+// Connect to the database
+connection.connect((err) => {
   if (err) {
-    console.error('Error connecting to MySQL database:', err);
+    console.error('Error connecting to database:', err);
     return;
   }
   console.log('Connected to MySQL database');
