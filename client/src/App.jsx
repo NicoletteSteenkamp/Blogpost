@@ -11,6 +11,9 @@ import Home from "./pages/Home";
 import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import dotenv from 'dotenv';
+dotenv.config();
+
 import "./style.css"
 
 const Layout = () => {
