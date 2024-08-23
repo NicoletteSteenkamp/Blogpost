@@ -402,7 +402,7 @@ footer img {
 }
 
 /* Editor Container */
-.app .container .add .content .editorContainer {
+.app .container .add .content .editor-container {
   height: 300px;
   overflow: hidden; /* Hide scrollbars if necessary */
   border: 1px solid lightgray;
@@ -411,7 +411,7 @@ footer img {
 }
 
 /* Editor */
-.app .container .add .content .editorContainer .editor {
+.app .container .add .content .editor-container .editor {
   height: 100%;
   border: none; /* Remove default border */
 }
