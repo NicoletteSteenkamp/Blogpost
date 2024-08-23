@@ -6,30 +6,46 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
 const Write = () => {
+  // Get the location state using the `useLocation` hook
+  // will be used to check if we are in writing o edit mode
   const state = useLocation().state;
+
+  // Define the state variables
   const [value, setValue] = useState(state?.title || "");
   const [title, setTitle] = useState(state?.desc || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
 
-  const navigate = useNavigate()
+  // Define the navigate function
+  const navigate = useNavigate();
 
+  // Define the upload function
   const upload = async () => {
     try {
+      // Create a new FormData object and append the file to it
       const formData = new FormData();
       formData.append("file", file);
+
+      // Send a POST request to upload the file
       const res = await axios.post("/upload", formData);
+
+      // Return the filename of the uploaded file
       return res.data;
     } catch (err) {
       console.log(err);
     }
   };
 
+  // Define the handleClick function to handle the form submission
   const handleClick = async (e) => {
     e.preventDefault();
+
+    // Upload the image and get the filename
     const imgUrl = await upload();
 
     try {
+      // Send a PUT request to update a post if the location state is defined (writing),
+      // otherwise send a POST request to create a new post
       state
         ? await axios.put(`/posts/${state.id}`, {
             title,
@@ -44,7 +60,9 @@ const Write = () => {
             img: file ? imgUrl : "",
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
-          navigate("/")
+
+      // Navigate to the homepage after the post is saved or updated
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +76,7 @@ const Write = () => {
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div className="editorContainer">
+        <div className="editor-container">
           <ReactQuill
             className="editor"
             theme="snow"

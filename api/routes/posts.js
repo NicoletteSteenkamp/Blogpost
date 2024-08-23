@@ -5,14 +5,16 @@ import {
   getPost,
   getPosts,
   updatePost,
-} from "../controllers/post.js";
+} from "../controllers/posts.js";
 
+// Create a new Router object
 const router = express.Router();
 
-router.get("/", getPosts);
-router.get("/:id", getPost);
-router.post("/", addPost);
-router.delete("/:id", deletePost);
-router.put("/:id", updatePost);
+// Define routes for various HTTP methods and their corresponding functions
+router.get("/", getPosts); // Get all posts
+router.get("/:id", getPost); // Get a specific post by its ID
+router.post("/", addPost); // Add a new post
+router.delete("/:id", deletePost); // Delete a post by its ID
+router.put("/:id", updatePost); // Update a post by its ID
 
 export default router;
