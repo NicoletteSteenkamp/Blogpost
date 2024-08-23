@@ -1,7 +1,5 @@
-// Single.jsx
+
 import React, { useContext, useEffect, useState } from "react";
-import EditImage from "../images/edit.png";
-import DeleteImage from "../images/delete.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
 import axios from "axios";
