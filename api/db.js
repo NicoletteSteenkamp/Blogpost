@@ -7,7 +7,8 @@ export const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: process.env.DB_KEY,
-  database: 'blogpost'
+  database: 'blogpost',
+  connectTimeout: 30000
 });
 
 db.connect((err) => {
