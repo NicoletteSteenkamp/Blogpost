@@ -11,6 +11,8 @@ export const db = mysql.createConnection({
   connectTimeout: 30000
 });
 
+connection.connect();
+
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err.stack);
