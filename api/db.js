@@ -8,7 +8,7 @@ export const db = mysql.createConnection({
   user: 'root',
   password: process.env.DB_KEY,
   database: 'blogpost',
-  connectTimeout: 30000
+  connectTimeout: 30000,
 });
 
 
