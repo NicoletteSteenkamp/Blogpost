@@ -39,5 +39,5 @@ app.use("/api/posts", postRoutes);
 
 // Start the server
 app.listen(8800, () => {
-  console.log("Connected on port 8800!");
+  console.log("Connected on port 3306!");
 });
