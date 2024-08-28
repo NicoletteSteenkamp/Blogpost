@@ -38,4 +38,4 @@ db.connect((err) => {
   setInterval(pingDatabase, 1000 * 60 * 60 * 24 * 2);
 });
 
-
+export { db };
