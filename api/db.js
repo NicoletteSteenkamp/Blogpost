@@ -30,12 +30,6 @@ db.connect((err) => {
     return;
   }
   console.log('Connected to the database.');
-  
-
-  pingDatabase();
-  
- 
-  setInterval(pingDatabase, 1000 * 60 * 60 * 24 * 2);
 });
 
 export { db };
