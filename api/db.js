@@ -20,15 +20,19 @@ db.connect((err) => {
   }
   console.log('Connected to the Aiven MySQL database.');
 });
-function pingDatabase() {
-  db.query('SELECT 1', (err) => {
-    if (err) {
-      console.error('Error pinging the database:', err.stack);
-    } else {
-      console.log('Database connection is active.');
-    }
-  });
-}
 
-// Schedule the ping every 10 days
-schedule.scheduleJob('0 0 */2 * *', pingDatabase); 
+
+// Ping the database every 2 days
+setInterval(pingDatabase, 1000 * 60 * 60 * 24 * 2);
+
+// Connect to the database initially
+db.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err.stack);
+    return;
+  }
+  console.log('Connected to the database.');
+  
+  // Initial ping
+  pingDatabase();
+});
