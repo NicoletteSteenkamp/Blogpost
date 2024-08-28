@@ -9,10 +9,10 @@ const db = mysql.createConnection({
   password: process.env.AIVEN_PASSWORD,
   database: process.env.AIVEN_DATABASE,
   port: process.env.AIVEN_PORT,
-  ssl: { rejectUnauthorized: false }  // Aiven typically requires SSL connections
+  ssl: { rejectUnauthorized: false }  
 });
 
-// Define the pingDatabase function
+
 function pingDatabase() {
   db.query('SELECT 1', (err) => {
     if (err) {
@@ -23,7 +23,7 @@ function pingDatabase() {
   });
 }
 
-// Connect to the database initially
+
 db.connect((err) => {
   if (err) {
     console.error('Error connecting to the database:', err.stack);
@@ -31,10 +31,10 @@ db.connect((err) => {
   }
   console.log('Connected to the database.');
   
-  // Initial ping
+
   pingDatabase();
   
-  // Set up interval to ping the database every 2 days
+ 
   setInterval(pingDatabase, 1000 * 60 * 60 * 24 * 2);
 });
 
