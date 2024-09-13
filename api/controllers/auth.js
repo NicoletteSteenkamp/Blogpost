@@ -2,18 +2,20 @@ import { db } from "../db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+// User registration
 export const register = (req, res) => {
-  // CHECK EXISTING USER
+  // Check for existing user
   const query = "SELECT * FROM users WHERE email = ? OR username = ?";
-
+  
   db.query(query, [req.body.email, req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length) return res.status(409).json("User already exists!");
 
-    // Hash the password and create a user
+    // Hash password
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
+    // Insert new user
     const insertQuery = "INSERT INTO users (`username`, `email`, `password`) VALUES (?, ?, ?)";
     const values = [req.body.username, req.body.email, hash];
 
@@ -24,24 +26,25 @@ export const register = (req, res) => {
   });
 };
 
+// User login
 export const login = (req, res) => {
-  // CHECK USER
+  // Check user
   const query = "SELECT * FROM users WHERE username = ?";
 
   db.query(query, [req.body.username], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json("User not found!");
 
-    // Check password
+    // Verify password
     const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password);
 
     if (!isPasswordCorrect) return res.status(400).json("Wrong username or password!");
 
-    // Sign JWT
-    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET);
+    // Generate JWT
+    const token = jwt.sign({ id: data[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+    // Send token as HTTP-only cookie
     const { password, ...other } = data[0];
-
     res.cookie("access_token", token, {
       httpOnly: true,
       secure: true,    // Only if you're using HTTPS
@@ -50,6 +53,7 @@ export const login = (req, res) => {
   });
 };
 
+// User logout
 export const logout = (req, res) => {
   res.clearCookie("access_token", {
     sameSite: 'None', // Required for cross-site cookies

@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { useUser } from "@clerk/clerk-react";
 import Logo from "../img/logo.png";
 
 const Navbar = () => {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { user, signOut } = useUser();
 
   return (
     <div className="navbar">
       <div className="container">
         <div className="logo">
           <Link to="/">
-          <img src={Logo} alt="" />
+            <img src={Logo} alt="Logo" />
           </Link>
         </div>
         <div className="links">
@@ -33,9 +33,9 @@ const Navbar = () => {
           <Link className="link" to="/?cat=food">
             <h6>FOOD</h6>
           </Link>
-          <span>{currentUser?.username}</span>
-          {currentUser ? (
-            <span onClick={logout}>Logout</span>
+          <span>{user?.username}</span>
+          {user ? (
+            <span onClick={signOut}>Logout</span>
           ) : (
             <Link className="link" to="/login">
               Login
