@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import Logo from "../img/logo.png";
 
 const Navbar = () => {
-  const { user, signOut } = useUser();
-
   return (
     <div className="navbar">
       <div className="container">
@@ -33,14 +31,17 @@ const Navbar = () => {
           <Link className="link" to="/?cat=food">
             <h6>FOOD</h6>
           </Link>
-          <span>{user?.username}</span>
-          {user ? (
-            <span onClick={signOut}>Logout</span>
-          ) : (
-            <Link className="link" to="/login">
-              Login
-            </Link>
-          )}
+
+          <SignedIn>
+            <span>
+              <UserButton />
+            </span>
+          </SignedIn>
+
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+
           <span className="write">
             <Link className="link" to="/write">
               Write
